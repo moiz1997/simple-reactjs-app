@@ -3,10 +3,6 @@ pipeline {
         label 'jenkins_agent'
     }
 
-    tools {
-        nodejs 'nodejs'
-    }
-
     stages {
         stage('Checkout') {
             steps {
