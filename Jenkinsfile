@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerHubCredentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    sh 'docker build -t $DOCKER_USERNAME/lab11 .'
+                    sh 'whoami && docker build -t $DOCKER_USERNAME/lab11 .'
                 }
             }
         }
