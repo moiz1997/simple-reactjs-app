@@ -1,29 +1,11 @@
 pipeline {
-    agent {
-        label 'jenkins_agent'
-    }
-
-    tools {
-        nodejs 'nodejs'
-        dockerTool 'docker'
-    }
+    agent any
 
     stages {
     
         stage('Checkout') {
             steps {
                 git 'https://github.com/moiz1997/simple-reactjs-app.git'
-            }
-        }
-
-        stage('Initialize'){
-            steps {
-                script {
-                    def dockerHome = tool 'docker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                }
-                sh 'groupadd docker'
-                sh 'usermod -aG docker jenkins'
             }
         }
 
