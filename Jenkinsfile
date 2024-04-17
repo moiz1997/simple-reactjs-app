@@ -9,12 +9,22 @@ pipeline {
     }
 
     stages {
+    
         stage('Checkout') {
             steps {
                 git 'https://github.com/moiz1997/simple-reactjs-app.git'
             }
         }
 
+        stage('Initialize'){
+            steps {
+                script {
+                    def dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                }
+            }
+        }
+        
         stage('Dependency Installation') {
             steps {
                 sh 'npm install'
