@@ -1,10 +1,7 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_CREDENTIALS = credentials('dockerHubCredentials')
-    }
+
     stages {
-    
         stage('Checkout') {
             steps {
                 git 'https://github.com/moiz1997/simple-reactjs-app.git'
@@ -19,20 +16,26 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKERHUBCREDENTIALS_USR/lab11 .'
+                withCredentials([usernamePassword(credentialsId: 'dockerHubCredentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker build -t $DOCKER_USERNAME/lab11 .'
+                }
             }
         }
-        
+
         stage('Run Docker Image') {
             steps {
-                sh 'docker run -d -p 6237:6237 $DOCKERHUBCREDENTIALS_USR/lab11'
+                withCredentials([usernamePassword(credentialsId: 'dockerHubCredentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker run -d -p 6237:6237 $DOCKER_USERNAME/lab11'
+                }
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                sh 'echo $DOCKERHUBCREDENTIALS_PSW | docker login -u $DOCKERHUBCREDENTIALS_USR --password-stdin'
-                sh 'docker push $DOCKERHUBCREDENTIALS_USR/lab11'
+                withCredentials([usernamePassword(credentialsId: 'dockerHubCredentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    sh 'docker push $DOCKER_USERNAME/lab11'
+                }
             }
         }
     }
