@@ -23,7 +23,7 @@ pipeline {
 
         stage('Run Docker Image') {
             steps {
-                sh 'docker run -d -p 3000:3000 lab11'
+                sh 'docker run -d -p 5000:5000 lab11'
             }
         }
 

@@ -13,12 +13,8 @@ RUN npm install
 # Copy the rest of the application's code into the Docker image
 COPY . .
 
-# Make port 8080 available to the world outside the Docker image
-EXPOSE 3000
+# Run the application
+CMD ["npm", "start"]
 
-FROM nginx:alpine
-
-COPY --from=0 /app /usr/share/nginx/html
-
-# Define the command to run the application
-CMD [ "nginx", "-g", "daemon off;" ]
+# Make port 5000 available to the world outside the Docker image
+EXPOSE 5000
