@@ -5,6 +5,7 @@ pipeline {
 
     tools {
         nodejs 'nodejs'
+        docker 'docker'
     }
 
     stages {
@@ -28,7 +29,7 @@ pipeline {
 
         stage('Run Docker Image') {
             steps {
-                sh 'docker run -d -p 8080:8080 lab11'
+                sh 'docker run -d -p 3000:3000 lab11'
             }
         }
 

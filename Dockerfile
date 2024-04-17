@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Make port 8080 available to the world outside the Docker image
-EXPOSE 8080
+EXPOSE 3000
 
 FROM nginx:alpine
 
