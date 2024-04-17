@@ -8,11 +8,7 @@ pipeline {
             }
         }
 
-        stage('Dependency Installation') {
-            steps {
-                sh 'npm ci'
-            }
-        }
+        
 
         stage('Build Docker Image') {
             steps {
