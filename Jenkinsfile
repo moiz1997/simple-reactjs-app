@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent jeskins_agent
 
     stages {
         stage('Checkout') {
