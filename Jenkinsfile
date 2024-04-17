@@ -1,5 +1,11 @@
 pipeline {
-    agent jeskins_agent
+    agent {
+        label 'jenkins_agent'
+    }
+
+    tools {
+        nodejs 'nodejs'
+    }
 
     stages {
         stage('Checkout') {
