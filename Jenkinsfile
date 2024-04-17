@@ -19,13 +19,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_USERNAME/lab11 .'
+                sh 'docker build -t $DOCKERHUBCREDENTIALS_USR/lab11 .'
             }
         }
-
+        
         stage('Run Docker Image') {
             steps {
-                sh 'docker run -d -p 6237:6237 $DOCKER_USERNAME/lab11'
+                sh 'docker run -d -p 6237:6237 $DOCKERHUBCREDENTIALS_USR/lab11'
             }
         }
 
