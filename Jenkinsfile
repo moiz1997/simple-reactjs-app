@@ -10,27 +10,27 @@ pipeline {
 
         stage('Dependency Installation') {
             steps {
-                bash 'npm install'
+                sh 'npm install'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                bash 'docker build -t lab11 .'
+                sh 'docker build -t lab11 .'
             }
         }
 
         stage('Run Docker Image') {
             steps {
-                bash 'docker run -d -p 8080:8080 lab11'
+                sh 'docker run -d -p 8080:8080 lab11'
             }
         }
 
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerHubCredentials', usernameVariable: 'moizbhai97', passwordVariable: 'monkeykong12')]) {
-                    bash 'docker login -u $Username -p $Password'
-                    bash 'docker push lab11'
+                    sh 'docker login -u $Username -p $Password'
+                    sh 'docker push lab11'
                 }
             }
         }
