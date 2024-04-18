@@ -17,4 +17,4 @@ COPY . .
 CMD ["npm", "start"]
 
 # Make port available to the world outside the Docker image
-EXPOSE 6230
+EXPOSE 6231

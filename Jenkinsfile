@@ -21,7 +21,7 @@ pipeline {
         stage('Run Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerHubCredentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    sh 'docker run -d -p 6237:6237 $DOCKER_USERNAME/lab11'
+                    sh 'docker run -d -p 6231:6231 $DOCKER_USERNAME/lab11'
                 }
             }
         }
